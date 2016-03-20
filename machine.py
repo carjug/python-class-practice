@@ -24,6 +24,8 @@ class Machine(object):
             self.beverages.append(bev)
 
         num_added = len(self.beverages) - pre_num
+
+        print '%(num_added)s %(name)ss have been added to the machine' % locals()
         return '%(num_added)s %(name)ss have been added to the machine' % locals()
 
     @staticmethod
@@ -31,16 +33,29 @@ class Machine(object):
         if type(money) == int or float:
             return True
 
-
-
     @staticmethod
     def start():
         print "To start making a Soda Machine, first give it a name."
         name = raw_input()
         my_machine = Machine()
         my_machine.name = name
-        print "Great."
+        print "Great. Now lets add some Beverages. Give me a name, the number of calories, and the price"
+        bev_name = raw_input()
+        bev_cals = raw_input()
+        bev_price = raw_input()
+        bev = Beverage(bev_name, bev_cals, bev_price)
+        my_machine.beverages.append(bev)
 
+        print "To restock more than one beverage at a time type 'restock'."
+        interact = raw_input()
+
+        if interact == "restock":
+            print "Would you like to restock your previous drink or a new drink? Prev/New"
+            answer = raw_input().lower()
+            if answer == "prev":
+                print "Great! How many?"
+                num = int(raw_input())
+                my_machine.restock([bev_name, bev_cals, bev_price], num)
 
 if __name__ == '__main__':
     Machine.start()
