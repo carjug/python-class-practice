@@ -30,3 +30,17 @@ class Machine(object):
     def check_payment(money):
         if type(money) == int or float:
             return True
+
+
+
+    @staticmethod
+    def start():
+        print "To start making a Soda Machine, first give it a name."
+        name = raw_input()
+        my_machine = Machine()
+        my_machine.name = name
+        print "Great."
+
+
+if __name__ == '__main__':
+    Machine.start()
